@@ -33,4 +33,12 @@ public class SurveyController {
     public Survey getSurveyById(@PathVariable("id") UUID id){
         return surveyService.getSurveyById(id).orElse(null);
     }
+
+    @DeleteMapping(path = "{id}")
+    public void deleteSurveyById(@PathVariable("id") UUID id) {  surveyService.deleteSurvey(id); }
+
+    @PutMapping(path = "{id}")
+    public void updateSurvey(@PathVariable("id") UUID id, @RequestBody Survey surveyToUpdate) {
+        surveyService.updateSurvey(id, surveyToUpdate);
+    }
 }

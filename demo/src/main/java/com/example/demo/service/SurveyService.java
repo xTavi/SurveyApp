@@ -28,4 +28,13 @@ public class SurveyService {
     }
 
     public Optional<Survey> getSurveyById(UUID id){ return surveyDao.selectSurveyById(id); }
+
+    public int deleteSurvey(UUID id){
+        return surveyDao.deleteSurveyById(id);
+    }
+
+    public int updateSurvey(UUID id, Survey survey) {
+        return surveyDao.updateSurveyById(id, survey);
+    }
+
 }

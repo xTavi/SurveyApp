@@ -20,12 +20,27 @@ public class FakeSurveyDataAccessService implements SurveyDao {
 
     @Override
     public int deleteSurveyById(UUID id) {
-        return 0;
+
+       Optional<Survey> surveyMaybe = selectSurveyById(id);
+       if(surveyMaybe.isEmpty()) {
+           return 0;
+       }
+       DB.remove(surveyMaybe.get());
+       return 1;
     }
 
     @Override
-    public int updateSurveyById(UUID id, Survey survey) {
-        return 0;
+    public int updateSurveyById(UUID id, Survey updateSurvey) {
+        return selectSurveyById(id)
+                .map(survey -> {
+                    int indexOfSurveyToUpdate = DB.indexOf(survey);
+                    if(indexOfSurveyToUpdate >= 0) {
+                        DB.set(indexOfSurveyToUpdate, new Survey(id, updateSurvey.getTitle(), updateSurvey.isOpen()));
+                        return 1;
+                    }
+                    return 0;
+                })
+                .orElse(0);
     }
 
     private static List<Survey> DB = new ArrayList<>();
