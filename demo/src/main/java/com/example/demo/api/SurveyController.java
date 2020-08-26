@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("api/v1/survey")
 @RestController
@@ -26,5 +27,10 @@ public class SurveyController {
     @GetMapping
     public List<Survey> getAllSurveys() {
         return surveyService.getAllSurveys();
+    }
+
+    @GetMapping(path = "{id}")
+    public Survey getSurveyById(@PathVariable("id") UUID id){
+        return surveyService.getSurveyById(id).orElse(null);
     }
 }

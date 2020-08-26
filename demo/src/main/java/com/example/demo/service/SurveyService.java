@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SurveyService {
@@ -23,5 +25,7 @@ public class SurveyService {
 
     public List<Survey> getAllSurveys() {
         return surveyDao.selectAllSurveys();
-    };
+    }
+
+    public Optional<Survey> getSurveyById(UUID id){ return surveyDao.selectSurveyById(id); }
 }
