@@ -3,8 +3,11 @@ package com.example.demo.api;
 import com.example.demo.service.SurveyService;
 import com.example.demo.model.Survey;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +23,7 @@ public class SurveyController {
     }
 
     @PostMapping
-    public void addSurvey(@RequestBody Survey survey) {
+    public void addSurvey(@Valid @NotNull @RequestBody Survey survey) {
         surveyService.addSurvey(survey);
     }
 
@@ -38,7 +41,7 @@ public class SurveyController {
     public void deleteSurveyById(@PathVariable("id") UUID id) {  surveyService.deleteSurvey(id); }
 
     @PutMapping(path = "{id}")
-    public void updateSurvey(@PathVariable("id") UUID id, @RequestBody Survey surveyToUpdate) {
+    public void updateSurvey(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Survey surveyToUpdate) {
         surveyService.updateSurvey(id, surveyToUpdate);
     }
 }
