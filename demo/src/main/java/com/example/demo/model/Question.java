@@ -36,7 +36,6 @@ public class Question {
         this.questionText = questionText;
         this.required = required;
         this.customAnswer = customAnswer;
-        this.answerList = answerList;
     }
 
     public long getId() {
