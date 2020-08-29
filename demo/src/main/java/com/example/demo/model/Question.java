@@ -26,6 +26,8 @@ public class Question {
     public Question() {
     }
 
+
+    //TODO AnswerList needed in params
     public Question(@JsonProperty("id") long id,
                     @JsonProperty("questionText") String questionText,
                     @JsonProperty("required") boolean required,
@@ -34,7 +36,7 @@ public class Question {
         this.questionText = questionText;
         this.required = required;
         this.customAnswer = customAnswer;
-//        this.answerList = answerList;
+        this.answerList = answerList;
     }
 
     public long getId() {
