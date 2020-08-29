@@ -3,13 +3,19 @@ package com.example.demo.service;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.model.Question;
 import com.example.demo.repositories.QuestionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class QuestionServiceImpl implements  QuestionService1 {
 
-   private QuestionRepository questionRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
 
 
     @Override
@@ -19,11 +25,11 @@ public class QuestionServiceImpl implements  QuestionService1 {
 
     @Override
     public Question updateQuestion(long id, Question question) {
-        Optional<Question> questionDB = this.questionRepository.findById(question.getId());
+        Optional<Question> questionDB = this.questionRepository.findById(id);
 
         if(questionDB.isPresent()) {
             Question questionUpdate = questionDB.get();
-            questionUpdate.setId(question.getId());
+//            questionUpdate.setId(question.getId());
             questionUpdate.setCustomAnswer(question.getCustomAnswer());
             questionUpdate.setQuestionText(question.getQuestionText());
             questionUpdate.setRequired(question.isRequired());
@@ -46,10 +52,8 @@ public class QuestionServiceImpl implements  QuestionService1 {
 
     @Override
     public List<Question> getAllQuestion() {
-        return this.questionRepository.findAll();
+        return questionRepository.findAll();
     }
-
-
 
     @Override
     public void deleteQuestion(long id) {
@@ -59,8 +63,5 @@ public class QuestionServiceImpl implements  QuestionService1 {
         } else {
             throw new ResourceNotFoundException("Record not found with id :" + id);
         }
-
     }
-
-
 }

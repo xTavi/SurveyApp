@@ -1,45 +1,45 @@
 package com.example.demo.controllers;
-
 import com.example.demo.model.Question;
-import com.example.demo.service.QuestionService;
+import com.example.demo.service.QuestionService1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 @RequestMapping("api/v1/question")
 @RestController
 public class QuestionController {
 
-    private final QuestionService questionService;
-
     @Autowired
-    public QuestionController(QuestionService questionService) {
-        this.questionService = questionService;
+    private QuestionService1 questionService;
+
+    @GetMapping()
+    public ResponseEntity<List<Question>> getAllQuestions(){
+        return ResponseEntity.ok().body(questionService.getAllQuestion());
     }
 
-    @PostMapping
-    public void addSurvey(@Valid @NotNull @RequestBody Question question) {
-        questionService.addQuestion(question);
+    @GetMapping(path = "{id}")
+    public ResponseEntity<Question> getQuestionById(@PathVariable long id){
+        return ResponseEntity.ok().body(questionService.getQuestionById(id));
     }
 
-    @GetMapping
-    public List<Question> getAllQuestions() {
-        return questionService.getAllQuestions();
+    @PostMapping()
+    public ResponseEntity<Question> createQuestion(@RequestBody Question question){
+        return ResponseEntity.ok().body(questionService.createQuestion(question));
     }
 
-//    @GetMapping(path = "{id}")
-//    public Survey getSurveyById(@PathVariable("id") UUID id){
-//        return surveyService.getSurveyById(id).orElse(null);
-//    }
-//
-//    @DeleteMapping(path = "{id}")
-//    public void deleteSurveyById(@PathVariable("id") UUID id) {  surveyService.deleteSurvey(id); }
-//
-//    @PutMapping(path = "{id}")
-//    public void updateSurvey(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Survey surveyToUpdate) {
-//        surveyService.updateSurvey(id, surveyToUpdate);
-//    }
+    @PutMapping(path = "{id}")
+    public ResponseEntity<Question> updateQuestion(@PathVariable long id, @RequestBody Question question){
+        return ResponseEntity.ok().body(this.questionService.updateQuestion(id, question));
+    }
+
+    @DeleteMapping(path = "{id}")
+    public HttpStatus deleteQuestion(@PathVariable long id){
+        this.questionService.deleteQuestion(id);
+        return HttpStatus.OK;
+    }
+
 }
