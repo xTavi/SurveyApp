@@ -35,7 +35,7 @@ public class FakeSurveyDataAccessService implements SurveyDao {
                 .map(survey -> {
                     int indexOfSurveyToUpdate = DB.indexOf(survey);
                     if(indexOfSurveyToUpdate >= 0) {
-                        DB.set(indexOfSurveyToUpdate, new Survey(id, updateSurvey.getTitle(), updateSurvey.isOpen()));
+                        DB.set(indexOfSurveyToUpdate, new Survey(id, updateSurvey.getTitle(), updateSurvey.isOpen(), updateSurvey.getQuestionList()));
                         return 1;
                     }
                     return 0;
@@ -43,11 +43,11 @@ public class FakeSurveyDataAccessService implements SurveyDao {
                 .orElse(0);
     }
 
-    private static List<Survey> DB = new ArrayList<>();
+    private static final List<Survey> DB = new ArrayList<>();
 
     @Override
     public int insertSurvey(UUID id, Survey survey) {
-        DB.add(new Survey(id, survey.getTitle(), survey.isOpen()));
+        DB.add(new Survey(id, survey.getTitle(), survey.isOpen(), survey.getQuestionList()));
         return 1;
     }
 
