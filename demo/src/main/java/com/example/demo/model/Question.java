@@ -1,19 +1,40 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 
 @Entity(name="QUESTION")
 public class Question {
 
     @Id
     @GeneratedValue
+    @Column(name = "question_id")
     private long id;
 
     private String questionText;
 
+    private boolean required;
+
+    private String customAnswer;
+
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answerList;
+
     public Question() {
+    }
+
+    public Question(long id, String questionText, boolean required, String customAnswer) {
+        this.id = id;
+        this.questionText = questionText;
+        this.required = required;
+        this.customAnswer = customAnswer;
+//        this.answerList = answerList;
+    }
+
+    public Question(long id, String questionText) {
+        this.id = id;
+        this.questionText = questionText;
     }
 
     public long getId() {
@@ -30,5 +51,21 @@ public class Question {
 
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
+    }
+
+    public boolean isRequired() {
+        return required;
+    }
+
+    public void setRequired(boolean required) {
+        this.required = required;
+    }
+
+    public String getCustomAnswer() {
+        return customAnswer;
+    }
+
+    public void setCustomAnswer(String customAnswer) {
+        this.customAnswer = customAnswer;
     }
 }
