@@ -37,18 +37,6 @@ public class Question {
 //        this.answerList = answerList;
     }
 
-//    public Question(@JsonProperty("id")  long id,
-//                    @JsonProperty("questionText")  questionText,
-//                    @JsonProperty("required") required,
-//                    @JsonProperty("customAnswer") customAnswer) {
-//        this.id = id;
-//        this.questionText = questionText;
-//        this.required = required;
-//        this.customAnswer = customAnswer;
-////        this.answerList = answerList;
-//    }
-
-
     public long getId() {
         return id;
     }
