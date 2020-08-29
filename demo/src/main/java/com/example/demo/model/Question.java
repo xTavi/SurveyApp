@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -24,7 +26,10 @@ public class Question {
     public Question() {
     }
 
-    public Question(long id, String questionText, boolean required, String customAnswer) {
+    public Question(@JsonProperty("id") long id,
+                    @JsonProperty("questionText") String questionText,
+                    @JsonProperty("required") boolean required,
+                    @JsonProperty("customAnswer") String customAnswer) {
         this.id = id;
         this.questionText = questionText;
         this.required = required;
@@ -32,10 +37,17 @@ public class Question {
 //        this.answerList = answerList;
     }
 
-    public Question(long id, String questionText) {
-        this.id = id;
-        this.questionText = questionText;
-    }
+//    public Question(@JsonProperty("id")  long id,
+//                    @JsonProperty("questionText")  questionText,
+//                    @JsonProperty("required") required,
+//                    @JsonProperty("customAnswer") customAnswer) {
+//        this.id = id;
+//        this.questionText = questionText;
+//        this.required = required;
+//        this.customAnswer = customAnswer;
+////        this.answerList = answerList;
+//    }
+
 
     public long getId() {
         return id;

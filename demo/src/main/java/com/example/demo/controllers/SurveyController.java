@@ -1,9 +1,8 @@
-package com.example.demo.api;
+package com.example.demo.controllers;
 
 import com.example.demo.service.SurveyService;
 import com.example.demo.model.Survey;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
