@@ -49,10 +49,6 @@ public class PossibleAnswer {
         this.text = text;
     }
 
-//    public Set<Question> getQuestionSet() {
-//        return questionSet;
-//    }
-
     public void setQuestionSet(Set<Question> questionSet) {
         this.questionSet = questionSet;
     }
