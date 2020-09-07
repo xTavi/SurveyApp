@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.model.Answer;
+import com.example.demo.model.PossibleAnswer;
 import com.example.demo.model.Question;
 import com.example.demo.repositories.AnswerRepository;
 import com.example.demo.repositories.QuestionRepository;
@@ -9,6 +9,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 @SpringBootApplication
 public class SurveyAppApplication {
@@ -21,13 +26,20 @@ public class SurveyAppApplication {
 	CommandLineRunner runner(QuestionRepository questionRepository, AnswerRepository answerRepository){
 		Faker faker = new Faker();
 		return args -> {
-			Question q1 = new Question(1, faker.animal().name(), false, faker.book().author());
-			for(int i = 0; i < 5; i++){
+			PossibleAnswer fakePossibleAnswer = new PossibleAnswer();
+			Set<PossibleAnswer> possibleAnswerSet = new HashSet<>();
+			possibleAnswerSet.add(fakePossibleAnswer);
 
-				questionRepository.save(new Question(i, faker.animal().name(), false, faker.book().author()));
-				answerRepository.save(new Answer(i, faker.dog().name(), q1));
+			Question q1 = new Question(1, faker.animal().name(), false, faker.book().author(), possibleAnswerSet);
+			Set<Question> questionSet = new HashSet<>();
+			questionSet.add(q1);
+
+			for (int i = 0; i < 5; i++) {
+
+				questionRepository.save(new Question(i, faker.animal().name(), false, faker.book().author(), possibleAnswerSet));
+				answerRepository.save(new PossibleAnswer(i, faker.dog().name(), questionSet));
 			}
-
 		};
-	}
+	};
 }
+

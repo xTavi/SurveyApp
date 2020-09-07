@@ -1,9 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
-import com.example.demo.model.Answer;
+import com.example.demo.model.PossibleAnswer;
 import com.example.demo.repositories.AnswerRepository;
-import com.example.demo.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,29 +19,29 @@ public class AnswerServiceImpl implements AnswerService {
 
 
     @Override
-    public Answer createAnswer(Answer answer) {
-        return answerRepository.save(answer);
+    public PossibleAnswer createAnswer(PossibleAnswer possibleAnswer) {
+        return answerRepository.save(possibleAnswer);
     }
 
     @Override
-    public Answer updateAnswer(long id, Answer answer) {
+    public PossibleAnswer updateAnswer(long id, PossibleAnswer possibleAnswer) {
 
-        Optional<Answer> answerDb = this.answerRepository.findById(id);
+        Optional<PossibleAnswer> answerDb = this.answerRepository.findById(id);
 
         if(answerDb.isPresent()) {
-            Answer answerToUpdate = answerDb.get();
-            answerToUpdate.setText(answer.getText());
-            answerToUpdate.setQuestion(answer.getQuestion());
-            answerRepository.save(answerToUpdate);
-            return answerToUpdate;
+            PossibleAnswer possibleAnswerToUpdate = answerDb.get();
+            possibleAnswerToUpdate.setText(possibleAnswer.getText());
+//            possibleAnswerToUpdate.setQuestionSet(possibleAnswer.getQuestionSet());
+            answerRepository.save(possibleAnswerToUpdate);
+            return possibleAnswerToUpdate;
         } else {
-            throw new ResourceNotFoundException("Record not found with id :" + answer.getId());
+            throw new ResourceNotFoundException("Record not found with id :" + possibleAnswer.getId());
         }
     }
 
     @Override
-    public Answer getAnswerById(long id) {
-        Optional<Answer> answerDb = this.answerRepository.findById(id);
+    public PossibleAnswer getAnswerById(long id) {
+        Optional<PossibleAnswer> answerDb = this.answerRepository.findById(id);
         if(answerDb.isPresent()) {
             return answerDb.get();
         } else {
@@ -51,13 +50,13 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<Answer> getAllAnswer() {
+    public List<PossibleAnswer> getAllAnswer() {
         return answerRepository.findAll();
     }
 
     @Override
     public void deleteAnswer(long id) {
-        Optional<Answer> answerDb = this.answerRepository.findById(id);
+        Optional<PossibleAnswer> answerDb = this.answerRepository.findById(id);
         if(answerDb.isPresent()) {
             this.answerRepository.delete(answerDb.get());
         } else {

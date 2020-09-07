@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
-import com.example.demo.model.Answer;
+import com.example.demo.model.PossibleAnswer;
 import com.example.demo.service.AnswerService;
-import com.example.demo.service.QuestionService1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,23 +17,23 @@ public class AnswerController {
     private AnswerService answerService;
 
     @GetMapping()
-    public ResponseEntity<List<Answer>> getAllAnswers(){
+    public ResponseEntity<List<PossibleAnswer>> getAllAnswers(){
         return ResponseEntity.ok().body(answerService.getAllAnswer());
     }
 
     @GetMapping(path = "{id}")
-    public ResponseEntity<Answer> getAnswerById(@PathVariable long id){
+    public ResponseEntity<PossibleAnswer> getAnswerById(@PathVariable long id){
         return ResponseEntity.ok().body(answerService.getAnswerById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Answer> createAnswer(@RequestBody Answer answer){
-        return ResponseEntity.ok().body(answerService.createAnswer(answer));
+    public ResponseEntity<PossibleAnswer> createAnswer(@RequestBody PossibleAnswer possibleAnswer){
+        return ResponseEntity.ok().body(answerService.createAnswer(possibleAnswer));
     }
 
     @PutMapping(path = "{id}")
-    public ResponseEntity<Answer> updateAnswer(@PathVariable long id, @RequestBody Answer answer){
-        return ResponseEntity.ok().body(this.answerService.updateAnswer(id, answer));
+    public ResponseEntity<PossibleAnswer> updateAnswer(@PathVariable long id, @RequestBody PossibleAnswer possibleAnswer){
+        return ResponseEntity.ok().body(this.answerService.updateAnswer(id, possibleAnswer));
     }
 
     @DeleteMapping(path = "{id}")

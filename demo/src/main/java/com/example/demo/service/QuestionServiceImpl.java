@@ -29,10 +29,10 @@ public class QuestionServiceImpl implements  QuestionService1 {
 
         if(questionDB.isPresent()) {
             Question questionUpdate = questionDB.get();
-//            questionUpdate.setId(question.getId());
             questionUpdate.setCustomAnswer(question.getCustomAnswer());
             questionUpdate.setQuestionText(question.getQuestionText());
             questionUpdate.setRequired(question.isRequired());
+            questionUpdate.setPossibleAnswerSet(question.getPossibleAnswerSet());
             questionRepository.save(questionUpdate);
             return questionUpdate;
         } else {

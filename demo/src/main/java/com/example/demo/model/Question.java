@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import java.util.Set;
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class Question {
 
     private String customAnswer;
 
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answerList;
+    @ManyToMany(mappedBy = "questionSet")
+    private Set<PossibleAnswer> possibleAnswerSet;
 
     public Question() {
     }
@@ -31,11 +31,13 @@ public class Question {
     public Question(@JsonProperty("id") long id,
                     @JsonProperty("questionText") String questionText,
                     @JsonProperty("required") boolean required,
-                    @JsonProperty("customAnswer") String customAnswer) {
+                    @JsonProperty("customAnswer") String customAnswer,
+                    @JsonProperty("possibleAnswerList") Set<PossibleAnswer> possibleAnswerSet) {
         this.id = id;
         this.questionText = questionText;
         this.required = required;
         this.customAnswer = customAnswer;
+        this.possibleAnswerSet = possibleAnswerSet;
     }
 
     public long getId() {
@@ -68,5 +70,13 @@ public class Question {
 
     public void setCustomAnswer(String customAnswer) {
         this.customAnswer = customAnswer;
+    }
+
+    public Set<PossibleAnswer> getPossibleAnswerSet() {
+        return possibleAnswerSet;
+    }
+
+    public void setPossibleAnswerSet(Set<PossibleAnswer> possibleAnswerSet) {
+        this.possibleAnswerSet = possibleAnswerSet;
     }
 }
