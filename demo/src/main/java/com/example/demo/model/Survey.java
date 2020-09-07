@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,12 +18,31 @@ public class Survey {
     private UUID id;
 
     @NotBlank
-    private  String title;
+    private String title;
 
-    private  boolean open;
+    private boolean open;
+
+//    public <E> Survey(UUID randomUUID, boolean b, HashSet<E> es) {
+//    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
+    }
 
     @OneToMany(mappedBy = "survey")
-    private  List<Question> questionList;
+    private List<Question> questionList;
 
 
     public Survey(@JsonProperty("id") UUID id,

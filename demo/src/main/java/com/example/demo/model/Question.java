@@ -20,6 +20,10 @@ public class Question {
 
     private String customAnswer;
 
+    @ManyToOne
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
+
     @ManyToMany(mappedBy = "questionSet")
     private Set<PossibleAnswer> possibleAnswerSet;
 

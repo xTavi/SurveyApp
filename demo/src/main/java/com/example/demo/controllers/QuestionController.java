@@ -37,7 +37,7 @@ public class QuestionController {
     }
 
     @DeleteMapping(path = "{id}")
-    public HttpStatus deleteQuestion(@PathVariable long id){
+    public HttpStatus deleteQuestion(@PathVariable long id) {
         this.questionService.deleteQuestion(id);
         return HttpStatus.OK;
     }
