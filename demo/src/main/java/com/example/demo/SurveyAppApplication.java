@@ -30,13 +30,13 @@ public class SurveyAppApplication {
 			Set<PossibleAnswer> possibleAnswerSet = new HashSet<>();
 			possibleAnswerSet.add(fakePossibleAnswer);
 
-			Question q1 = new Question(1, faker.animal().name(), false, faker.book().author(), possibleAnswerSet);
+			Question q1 = new Question(1, "What is your name", false, "", possibleAnswerSet);
 			Set<Question> questionSet = new HashSet<>();
 			questionSet.add(q1);
 
 			for (int i = 0; i < 5; i++) {
 
-				questionRepository.save(new Question(i, faker.animal().name(), false, faker.book().author(), possibleAnswerSet));
+				questionRepository.save(new Question(i, faker.animal().name() + "?", false, faker.book().author(), possibleAnswerSet));
 				answerRepository.save(new PossibleAnswer(i, faker.dog().name(), questionSet));
 			}
 		};
