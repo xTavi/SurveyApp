@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import java.util.List;
@@ -25,13 +27,21 @@ public class Question {
     private Survey survey;
 
     @ManyToMany(mappedBy = "questionSet")
-    private Set<PossibleAnswer> possibleAnswerSet;
+    private Set<PossibleAnswer> possibleAnswerSet = new HashSet<>();
 
     public Question() {
     }
 
+    public Question(@JsonProperty("id") long id,
+                    @JsonProperty("questionText") String questionText,
+                    @JsonProperty("required") boolean required,
+                    @JsonProperty("customAnswer") String customAnswer) {
+        this.id = id;
+        this.questionText = questionText;
+        this.required = required;
+        this.customAnswer = customAnswer;
+    }
 
-    //TODO AnswerList needed in params
     public Question(@JsonProperty("id") long id,
                     @JsonProperty("questionText") String questionText,
                     @JsonProperty("required") boolean required,
@@ -82,5 +92,13 @@ public class Question {
 
     public void setPossibleAnswerSet(Set<PossibleAnswer> possibleAnswerSet) {
         this.possibleAnswerSet = possibleAnswerSet;
+    }
+
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
+    }
+
+    public void addPossibleAnswer(PossibleAnswer possibleAnswer){
+        possibleAnswerSet.add(possibleAnswer);
     }
 }

@@ -3,6 +3,7 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "POSSIBLE_ANSWER")
@@ -19,7 +20,7 @@ public class PossibleAnswer {
             name = "questions_possible_answers",
             joinColumns = @JoinColumn(name = "possible_answer_id"),
             inverseJoinColumns = @JoinColumn(name = "question_id"))
-    private Set<Question> questionSet;
+    private Set<Question> questionSet = new HashSet<>();
 
 
     public PossibleAnswer() {
@@ -51,5 +52,9 @@ public class PossibleAnswer {
 
     public void setQuestionSet(Set<Question> questionSet) {
         this.questionSet = questionSet;
+    }
+
+    public void addQuestion(Question question){
+        questionSet.add(question);
     }
 }

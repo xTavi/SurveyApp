@@ -25,32 +25,19 @@ public class SurveyAppApplication {
 	CommandLineRunner runner(QuestionRepository questionRepository, AnswerRepository answerRepository, SurveyRepository surveyRepository){
 		Faker faker = new Faker();
 		return args -> {
-			Survey survey = new Survey();
-			survey.setTitle("Cel mai tare chestionar");
-			survey.setOpen(true);
+			Survey survey1 = new Survey();
+			survey1.setTitle("Cel mai tare chestionar");
+			survey1.setOpen(true);
+			surveyRepository.save(survey1);
 
+			Question question1 = new Question(1, "What is your name", false, "");
+			question1.setSurvey(survey1);
+			questionRepository.save(question1);
 
-			PossibleAnswer fakePossibleAnswer = new PossibleAnswer(1, "Answer1", new HashSet<>());
-			Set<PossibleAnswer> possibleAnswerSet = new HashSet<>();
-			possibleAnswerSet.add(fakePossibleAnswer);
-			answerRepository.save(fakePossibleAnswer);
+			PossibleAnswer possibleAnswer1 = new PossibleAnswer(1, "Answer1", new HashSet<>());
+			possibleAnswer1.addQuestion(question1);
+			answerRepository.save(possibleAnswer1);
 
-			Question q1 = new Question(1, "What is your name", false, "", possibleAnswerSet);
-			Set<Question> questionSet = new HashSet<>();
-			questionSet.add(q1);
-			questionRepository.save(q1);
-
-			List<Question> questionList = new ArrayList<>();
-			questionList.add(q1);
-			survey.setQuestionList(questionList);
-			surveyRepository.save(survey);
-
-//			for (int i = 0; i < 5; i++) {
-//
-//				questionRepository.save(new Question(i, faker.animal().name() + "?", false, faker.book().author(), possibleAnswerSet));
-//				answerRepository.save(new PossibleAnswer(i, faker.dog().name(), questionSet));
-//
-//			}
 		};
 	}
 }

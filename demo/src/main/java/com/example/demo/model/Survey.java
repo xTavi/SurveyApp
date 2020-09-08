@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(name="SURVEY")
@@ -37,18 +37,18 @@ public class Survey {
         this.open = open;
     }
 
-    public void setQuestionList(List<Question> questionList) {
+    public void setQuestionList(Set<Question> questionList) {
         this.questionList = questionList;
     }
 
     @OneToMany(mappedBy = "survey")
-    private List<Question> questionList;
+    private Set<Question> questionList;
 
 
     public Survey(@JsonProperty("id") UUID id,
                   @JsonProperty("title") String title,
                   @JsonProperty("open") boolean open,
-                  @JsonProperty("questionList") List<Question> questionList) {
+                  @JsonProperty("questionList") Set<Question> questionList) {
         this.id = id;
         this.title = title;
         this.open = open;
@@ -71,5 +71,5 @@ public class Survey {
         return open;
     }
 
-    public List<Question> getQuestionList() { return questionList; }
+    public Set<Question> getQuestionList() { return questionList; }
 }
