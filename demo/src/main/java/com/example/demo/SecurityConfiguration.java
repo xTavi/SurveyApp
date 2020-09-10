@@ -14,9 +14,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/h2-console/**").hasRole("ADMIN")
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/api/v1/**").hasRole("ADMIN")
+                .antMatchers("/h2-console/**").hasRole("COORDINATOR")
+                .antMatchers("/admin").hasRole("COORDINATOR")
+                .antMatchers("/api/v1/**").hasRole("COORDINATOR")
                 .antMatchers("/").permitAll()
                 .and().formLogin()
                 .and().csrf().ignoringAntMatchers("/**") // don't apply CSRF protection to /h2-console;
@@ -28,11 +28,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("blah")
                 .password("blah")
-                .roles("ADMIN")
+                .roles("COORDINATOR")
                 .and()
                 .withUser("yo")
                 .password("yo")
-                .roles("USER");
+                .roles("RESPONDENT");
     }
 
     @Bean
