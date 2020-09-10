@@ -18,10 +18,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/api/v1/**").hasRole("ADMIN")
                 .antMatchers("/").permitAll()
-//                .anyRequest().authenticated()//all other urls can be access by any authenticated role
                 .and().formLogin()
-                .and().csrf().ignoringAntMatchers("/h2-console/**") // don't apply CSRF protection to /h2-console;
-                .and().csrf().ignoringAntMatchers("/login")
+                .and().csrf().ignoringAntMatchers("/**") // don't apply CSRF protection to /h2-console;
                 .and().headers().frameOptions().sameOrigin(); // allow use of frame to same origin urls
     }
 

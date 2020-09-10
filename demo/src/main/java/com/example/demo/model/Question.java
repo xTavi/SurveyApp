@@ -42,17 +42,17 @@ public class Question {
         this.customAnswer = customAnswer;
     }
 
-    public Question(@JsonProperty("id") long id,
-                    @JsonProperty("questionText") String questionText,
-                    @JsonProperty("required") boolean required,
-                    @JsonProperty("customAnswer") String customAnswer,
-                    @JsonProperty("possibleAnswerList") Set<PossibleAnswer> possibleAnswerSet) {
-        this.id = id;
-        this.questionText = questionText;
-        this.required = required;
-        this.customAnswer = customAnswer;
-        this.possibleAnswerSet = possibleAnswerSet;
-    }
+//    public Question(@JsonProperty("id") long id,
+//                    @JsonProperty("questionText") String questionText,
+//                    @JsonProperty("required") boolean required,
+//                    @JsonProperty("customAnswer") String customAnswer,
+//                    @JsonProperty("possibleAnswerList") Set<PossibleAnswer> possibleAnswerSet) {
+//        this.id = id;
+//        this.questionText = questionText;
+//        this.required = required;
+//        this.customAnswer = customAnswer;
+//        this.possibleAnswerSet = possibleAnswerSet;
+//    }
 
     public long getId() {
         return id;
