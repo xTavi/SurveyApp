@@ -4,6 +4,7 @@ import com.example.demo.model.Survey;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public interface SurveyService1 {
 
@@ -12,4 +13,5 @@ public interface SurveyService1 {
         Survey getSurveyById(UUID id);
         List<Survey> getAllSurvey();
         void deleteSurvey(UUID id);
+
 }

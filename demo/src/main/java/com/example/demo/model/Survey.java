@@ -22,6 +22,8 @@ public class Survey {
 
     private boolean open;
 
+    private String creatorName;
+
 //    public <E> Survey(UUID randomUUID, boolean b, HashSet<E> es) {
 //    }
 
@@ -47,10 +49,12 @@ public class Survey {
 
     public Survey(@JsonProperty("id") UUID id,
                   @JsonProperty("title") String title,
+                  @JsonProperty("creator_name") String creatorName,
                   @JsonProperty("open") boolean open,
                   @JsonProperty("questionList") Set<Question> questionList) {
         this.id = id;
         this.title = title;
+        this.creatorName = creatorName;
         this.open = open;
         this.questionList = questionList;
     }
@@ -65,6 +69,14 @@ public class Survey {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 
     public boolean isOpen() {

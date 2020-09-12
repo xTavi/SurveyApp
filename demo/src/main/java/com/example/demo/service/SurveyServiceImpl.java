@@ -4,9 +4,13 @@ import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.model.Survey;
 import com.example.demo.repositories.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,6 +24,7 @@ public class SurveyServiceImpl implements SurveyService1 {
 
     @Override
     public Survey createSurvey(Survey survey) {
+        survey.setCreatorName(getCurrentUserName());
         return surveyRepository.save(survey);
     }
 
@@ -52,7 +57,8 @@ public class SurveyServiceImpl implements SurveyService1 {
 
     @Override
     public List<Survey> getAllSurvey() {
-        return surveyRepository.findAll();
+        boolean A = isAdmin();
+        return surveyRepository.findByCreatorName(getCurrentUserName());
     }
 
     @Override
@@ -64,5 +70,21 @@ public class SurveyServiceImpl implements SurveyService1 {
         } else {
             throw new ResourceNotFoundException("Record not found with id:" + id);
         }
+    }
+
+    private String getCurrentUserName(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return username;
+    }
+
+    private boolean isAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_COORDINATOR"));
     }
 }
