@@ -57,8 +57,10 @@ public class SurveyServiceImpl implements SurveyService1 {
 
     @Override
     public List<Survey> getAllSurvey() {
-        boolean A = isAdmin();
-        return surveyRepository.findByCreatorName(getCurrentUserName());
+        if (isAdmin())
+            return surveyRepository.findByCreatorName(getCurrentUserName());
+        else
+            return surveyRepository.findAllByOpenIsTrue();
     }
 
     @Override

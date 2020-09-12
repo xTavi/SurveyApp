@@ -9,8 +9,13 @@ import java.security.Principal;
 public class HomeController {
 
     @GetMapping("/")
-    public String home() {
-        return("<h1>Welcome</h1>");
+    public String home(Principal principal) {
+        String name;
+        if (principal != null){
+            name = principal.getName();
+            return("<h1>Welcome Admin " + name + "</h1>");
+        }
+        return("<h1>Welcome Admin</h1>");
     }
 
     @GetMapping("/user")

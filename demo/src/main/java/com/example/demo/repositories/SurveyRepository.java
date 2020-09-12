@@ -9,4 +9,5 @@ import java.util.stream.Stream;
 
 public interface SurveyRepository extends JpaRepository<Survey, UUID> {
     List<Survey> findByCreatorName(String creatorName);
+    List<Survey> findAllByOpenIsTrue();
 }

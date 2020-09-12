@@ -16,7 +16,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").hasRole("COORDINATOR")
                 .antMatchers("/admin").hasRole("COORDINATOR")
-                .antMatchers("/api/v1/**").hasRole("COORDINATOR")
                 .antMatchers("/").permitAll()
                 .and().formLogin()
                 .and().csrf().ignoringAntMatchers("/**") // don't apply CSRF protection to /h2-console;
