@@ -24,9 +24,6 @@ public class Survey {
 
     private String creatorName;
 
-//    public <E> Survey(UUID randomUUID, boolean b, HashSet<E> es) {
-//    }
-
     public void setId(UUID id) {
         this.id = id;
     }
