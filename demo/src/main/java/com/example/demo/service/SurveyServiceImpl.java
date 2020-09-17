@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class SurveyServiceImpl implements SurveyService1 {
+public class SurveyServiceImpl implements SurveyService {
 
     @Autowired
     private SurveyRepository surveyRepository;
