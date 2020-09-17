@@ -29,5 +29,3 @@ public class HomeController {
         return("<h1>Welcome Admin" + name + "</h1>");
     }
 }
-
-wefqafsdaf
