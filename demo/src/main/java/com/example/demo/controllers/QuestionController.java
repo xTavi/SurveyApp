@@ -41,5 +41,4 @@ public class QuestionController {
         this.questionService.deleteQuestion(id);
         return HttpStatus.OK;
     }
-
 }

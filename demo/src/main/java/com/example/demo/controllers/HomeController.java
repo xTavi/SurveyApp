@@ -28,8 +28,6 @@ public class HomeController {
         String name = principal.getName();
         return("<h1>Welcome Admin" + name + "</h1>");
     }
-
-    private String ceva(){
-        return null;
-    }
 }
+
+wefqafsdaf
