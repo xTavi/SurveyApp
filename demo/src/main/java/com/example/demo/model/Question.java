@@ -93,9 +93,9 @@ public class Question {
         possibleAnswerSet.add(possibleAnswer);
     }
 
-    public DoneSurvey getDoneSurvey() {
-        return doneSurvey;
-    }
+//    public DoneSurvey getDoneSurvey() {
+//        return doneSurvey;
+//    }
 
     public void setDoneSurvey(DoneSurvey doneSurvey) {
         this.doneSurvey = doneSurvey;

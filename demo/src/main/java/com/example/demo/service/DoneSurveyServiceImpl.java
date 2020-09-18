@@ -23,12 +23,20 @@ public class DoneSurveyServiceImpl implements DoneSurveyService {
 
     @Autowired
     private DoneSurveyRepository doneSurveyRepository;
+
+    @Autowired
     private QuestionRepository questionRepository;
 
     @Override
     public DoneSurvey createDoneSurvey(DoneSurvey doneSurvey) {
         for(Question tempQuestion : doneSurvey.getQuestionList()) {
-            tempQuestion.setDoneSurvey(doneSurvey);
+           Optional<Question> q = questionRepository.findById(tempQuestion.getId());
+            if (q.isPresent()){
+                Question nq = q.get();
+                doneSurvey.getQuestionList().add(nq);
+                nq.setDoneSurvey(doneSurvey);
+                questionRepository.save(nq);
+            }
         }
 
         doneSurvey.setRespondentName(getCurrentUserName());

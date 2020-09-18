@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.model.DoneSurvey;
 import com.example.demo.model.PossibleAnswer;
 import com.example.demo.model.Question;
 import com.example.demo.model.Survey;
@@ -14,7 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.*;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class SurveyAppApplication {
@@ -43,8 +42,8 @@ public class SurveyAppApplication {
 			possibleAnswer1.addQuestion(question1);
 			answerRepository.save(possibleAnswer1);
 
-			DoneSurvey doneSurvey1 = new DoneSurvey(UUID.randomUUID(), "ds");
-			doneSurveyRepository.save(doneSurvey1);
+//			DoneSurvey doneSurvey1 = new DoneSurvey(UUID.randomUUID(), "ds");
+//			doneSurveyRepository.save(doneSurvey1);
 
 		};
 	}

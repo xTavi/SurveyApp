@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -43,6 +42,16 @@ public class Survey {
     @OneToMany(mappedBy = "survey")
     private Set<Question> questionList;
 
+    public Survey(){
+    }
+
+    public Survey(Survey survey){
+        this.id = survey.getId();
+        this.title = survey.getTitle();
+        this.open = survey.isOpen();
+        this.creatorName = survey.getCreatorName();
+        this.questionList = survey.getQuestionList();
+    }
 
     public Survey(@JsonProperty("id") UUID id,
                   @JsonProperty("title") String title,
@@ -56,9 +65,6 @@ public class Survey {
         this.questionList = questionList;
     }
 
-    public Survey(){
-
-    }
 
     public UUID getId() {
         return id;

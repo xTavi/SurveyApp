@@ -23,6 +23,10 @@ public class DoneSurvey extends Survey {
     public DoneSurvey() {
     }
 
+    public DoneSurvey(Survey survey){
+        super(survey);
+    }
+
     public DoneSurvey(@JsonProperty("id") UUID id,
                       @JsonProperty("respondentName") String respondentName) {
         this.id = id;
