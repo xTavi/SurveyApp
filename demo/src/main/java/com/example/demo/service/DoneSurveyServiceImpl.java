@@ -2,11 +2,14 @@ package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.model.DoneSurvey;
+import com.example.demo.model.Question;
 import com.example.demo.repositories.DoneSurveyRepository;
+import com.example.demo.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,9 +23,14 @@ public class DoneSurveyServiceImpl implements DoneSurveyService {
 
     @Autowired
     private DoneSurveyRepository doneSurveyRepository;
+    private QuestionRepository questionRepository;
 
     @Override
     public DoneSurvey createDoneSurvey(DoneSurvey doneSurvey) {
+        for(Question tempQuestion : doneSurvey.getQuestionList()) {
+            tempQuestion.setDoneSurvey(doneSurvey);
+        }
+
         doneSurvey.setRespondentName(getCurrentUserName());
         return doneSurveyRepository.save(doneSurvey);
     }
@@ -40,13 +48,13 @@ public class DoneSurveyServiceImpl implements DoneSurveyService {
 
     @Override
     public List<DoneSurvey> getAllDoneSurvey() {
-        // Here I need a little clarification
-        // If the user is a RESPONDENT see all surveys done by him
-        // If the user is a COORDINATOR see all his respondent surveys
+        String userName = getCurrentUserName();
         if (isCoordinator())
-            return surveyRepository.findByCreatorName(getCurrentUserName());
+            return doneSurveyRepository.findDoneSurveysByCreatorName(userName);
         else
-            return surveyRepository.findAllByOpenIsTrue();
+            if(isRespondent())
+                return doneSurveyRepository.findDoneSurveysByRespondentName(userName);
+        throw new UsernameNotFoundException("There is a problem with your account!");
     }
 
 
