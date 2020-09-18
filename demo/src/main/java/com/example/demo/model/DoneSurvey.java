@@ -5,29 +5,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity(name = "DONE_SURVEY")
 public class DoneSurvey extends Survey {
     @Id
     @GeneratedValue
-    private long id;
+    private UUID id;
 
     private String respondentName;
 
     public DoneSurvey() {
     }
 
-    public DoneSurvey(@JsonProperty("id") long id,
+    public DoneSurvey(@JsonProperty("id") UUID id,
                       @JsonProperty("respondentName") String respondentName) {
         this.id = id;
         this.respondentName = respondentName;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -38,5 +39,6 @@ public class DoneSurvey extends Survey {
     public void setRespondentName(String respondentName) {
         this.respondentName = respondentName;
     }
+
 
 }

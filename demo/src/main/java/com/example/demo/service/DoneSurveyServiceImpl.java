@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
-import com.example.demo.model.Survey;
-import com.example.demo.repositories.SurveyRepository;
+import com.example.demo.model.DoneSurvey;
+import com.example.demo.repositories.DoneSurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,62 +16,39 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public class SurveyServiceImpl implements SurveyService {
+public class DoneSurveyServiceImpl implements DoneSurveyService {
 
     @Autowired
-    private SurveyRepository surveyRepository;
+    private DoneSurveyRepository doneSurveyRepository;
 
     @Override
-    public Survey createSurvey(Survey survey) {
-        survey.setCreatorName(getCurrentUserName());
-        return surveyRepository.save(survey);
+    public DoneSurvey createDoneSurvey(DoneSurvey doneSurvey) {
+        doneSurvey.setRespondentName(getCurrentUserName());
+        return doneSurveyRepository.save(doneSurvey);
     }
 
     @Override
-    public Survey updateSurvey(UUID id, Survey survey) {
-        Optional<Survey> surveyDB = this.surveyRepository.findById(id);
+    public DoneSurvey getDoneSurveyById(UUID id) {
+        Optional<DoneSurvey> doneSurveyDB = doneSurveyRepository.findById(id);
 
-        if (surveyDB.isPresent()) {
-            Survey surveyToUpdate = surveyDB.get();
-            surveyToUpdate.setOpen(survey.isOpen());
-            surveyToUpdate.setTitle(survey.getTitle());
-            surveyToUpdate.setQuestionList(survey.getQuestionList());
-            surveyRepository.save(surveyToUpdate);
-            return surveyToUpdate;
-        } else {
-            throw new ResourceNotFoundException("Record not found with id:" + survey.getId());
-        }
-    }
-
-    @Override
-    public Survey getSurveyById(UUID id) {
-        Optional<Survey> surveyDB = this.surveyRepository.findById(id);
-
-        if (surveyDB.isPresent()) {
-            return surveyDB.get();
+        if (doneSurveyDB.isPresent()) {
+            return doneSurveyDB.get();
         } else {
             throw new ResourceNotFoundException("Record not found with id:" + id);
         }
     }
 
     @Override
-    public List<Survey> getAllSurvey() {
+    public List<DoneSurvey> getAllDoneSurvey() {
+        // Here I need a little clarification
+        // If the user is a RESPONDENT see all surveys done by him
+        // If the user is a COORDINATOR see all his respondent surveys
         if (isCoordinator())
             return surveyRepository.findByCreatorName(getCurrentUserName());
         else
             return surveyRepository.findAllByOpenIsTrue();
     }
 
-    @Override
-    public void deleteSurvey(UUID id) {
-        Optional<Survey> surveyDB = this.surveyRepository.findById(id);
-
-        if (surveyDB.isPresent()) {
-            this.surveyRepository.delete(surveyDB.get());
-        } else {
-            throw new ResourceNotFoundException("Record not found with id:" + id);
-        }
-    }
 
     private String getCurrentUserName(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -87,5 +64,10 @@ public class SurveyServiceImpl implements SurveyService {
     private boolean isCoordinator() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_COORDINATOR"));
+    }
+
+    private boolean isRespondent() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_RESPONDENT"));
     }
 }
