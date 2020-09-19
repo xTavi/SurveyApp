@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.model.DoneSurvey;
 import com.example.demo.model.PossibleAnswer;
 import com.example.demo.model.Question;
 import com.example.demo.model.Survey;
@@ -42,8 +43,8 @@ public class SurveyAppApplication {
 			possibleAnswer1.addQuestion(question1);
 			answerRepository.save(possibleAnswer1);
 
-//			DoneSurvey doneSurvey1 = new DoneSurvey(UUID.randomUUID(), "ds");
-//			doneSurveyRepository.save(doneSurvey1);
+			DoneSurvey doneSurvey1 = new DoneSurvey(survey1);
+			doneSurveyRepository.save(doneSurvey1);
 
 		};
 	}

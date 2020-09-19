@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.model.Question;
 import com.example.demo.model.Survey;
+import com.example.demo.repositories.QuestionRepository;
 import com.example.demo.repositories.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -21,9 +23,17 @@ public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
 
+    @Autowired
+    QuestionRepository questionRepository;
+
     @Override
     public Survey createSurvey(Survey survey) {
         survey.setCreatorName(getCurrentUserName());
+
+        for(Question q : survey.getQuestionList()){
+           if(questionRepository.findById(q.getId()).isPresent())
+               questionRepository.findById(q.getId()).get().setSurvey(survey);
+        }
         return surveyRepository.save(survey);
     }
 

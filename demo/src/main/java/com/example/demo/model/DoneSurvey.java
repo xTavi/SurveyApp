@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Entity(name = "DONE_SURVEY")
 public class DoneSurvey extends Survey {
+
     @Id
     @GeneratedValue
     private UUID id;
