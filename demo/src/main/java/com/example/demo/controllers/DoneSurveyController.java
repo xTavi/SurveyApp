@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.DoneSurvey;
-import com.example.demo.model.Survey;
 import com.example.demo.service.DoneSurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +28,7 @@ public class DoneSurveyController {
     }
 
     @PostMapping
-    public ResponseEntity<DoneSurvey> createDoneSurvey (@RequestBody Survey survey) {
-        DoneSurvey doneSurvey = new DoneSurvey(survey);
+    public ResponseEntity<DoneSurvey> createDoneSurvey (@RequestBody DoneSurvey doneSurvey) {
         return ResponseEntity.ok().body(doneSurveyService.createDoneSurvey(doneSurvey));
     }
 }

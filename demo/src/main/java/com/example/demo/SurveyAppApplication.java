@@ -1,11 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.model.DoneSurvey;
 import com.example.demo.model.PossibleAnswer;
 import com.example.demo.model.Question;
 import com.example.demo.model.Survey;
 import com.example.demo.repositories.AnswerRepository;
-import com.example.demo.repositories.DoneSurveyRepository;
 import com.example.demo.repositories.QuestionRepository;
 import com.example.demo.repositories.SurveyRepository;
 import com.github.javafaker.Faker;
@@ -26,8 +24,7 @@ public class SurveyAppApplication {
 	@Bean
 	CommandLineRunner runner(QuestionRepository questionRepository,
 							 AnswerRepository answerRepository,
-							 SurveyRepository surveyRepository,
-							 DoneSurveyRepository doneSurveyRepository){
+							 SurveyRepository surveyRepository){
 		Faker faker = new Faker();
 		return args -> {
 			Survey survey1 = new Survey();
@@ -42,10 +39,6 @@ public class SurveyAppApplication {
 			PossibleAnswer possibleAnswer1 = new PossibleAnswer(1, "Answer1", new HashSet<>());
 			possibleAnswer1.addQuestion(question1);
 			answerRepository.save(possibleAnswer1);
-
-			DoneSurvey doneSurvey1 = new DoneSurvey(survey1);
-			doneSurveyRepository.save(doneSurvey1);
-
 		};
 	}
 }

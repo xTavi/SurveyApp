@@ -8,9 +8,6 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity(name="SURVEY")
-@Inheritance(
-        strategy = InheritanceType.JOINED
-)
 public class Survey {
 
     @Id

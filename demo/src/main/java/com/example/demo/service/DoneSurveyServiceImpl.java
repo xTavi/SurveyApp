@@ -2,9 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.model.DoneSurvey;
-import com.example.demo.model.Question;
 import com.example.demo.repositories.DoneSurveyRepository;
-import com.example.demo.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,21 +22,8 @@ public class DoneSurveyServiceImpl implements DoneSurveyService {
     @Autowired
     private DoneSurveyRepository doneSurveyRepository;
 
-    @Autowired
-    private QuestionRepository questionRepository;
-
     @Override
     public DoneSurvey createDoneSurvey(DoneSurvey doneSurvey) {
-        for(Question tempQuestion : doneSurvey.getQuestionList()) {
-           Optional<Question> q = questionRepository.findById(tempQuestion.getId());
-            if (q.isPresent()){
-                Question nq = q.get();
-                doneSurvey.getQuestionList().add(nq);
-                nq.setDoneSurvey(doneSurvey);
-                questionRepository.save(nq);
-            }
-        }
-
         doneSurvey.setRespondentName(getCurrentUserName());
         return doneSurveyRepository.save(doneSurvey);
     }
