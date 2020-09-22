@@ -15,7 +15,7 @@ public class HomeController {
             name = principal.getName();
             return("<h1>Welcome Admin " + name + "</h1>");
         }
-        return("<h1>Welcome Admin</h1>");
+        return("<h1>Welcome</h1>");
     }
 
     @GetMapping("/user")
