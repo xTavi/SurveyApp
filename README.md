@@ -1,6 +1,4 @@
 # SurveyApp
-This project was created for an interview
-
 
 Surveys are a valuable part of any developers toolbox. They are useful for getting
 feedback from your users on a variety of topics including application satisfaction,
