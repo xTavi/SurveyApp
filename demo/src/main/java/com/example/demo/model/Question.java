@@ -2,10 +2,9 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
-import java.util.List;
 
 
 @Entity(name="QUESTION")
@@ -26,6 +25,10 @@ public class Question {
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
+    @ManyToOne
+    @JoinColumn(name = "done_survey_id")
+    private DoneSurvey doneSurvey;
+
     @ManyToMany(mappedBy = "questionSet")
     private Set<PossibleAnswer> possibleAnswerSet = new HashSet<>();
 
@@ -41,18 +44,6 @@ public class Question {
         this.required = required;
         this.customAnswer = customAnswer;
     }
-
-//    public Question(@JsonProperty("id") long id,
-//                    @JsonProperty("questionText") String questionText,
-//                    @JsonProperty("required") boolean required,
-//                    @JsonProperty("customAnswer") String customAnswer,
-//                    @JsonProperty("possibleAnswerList") Set<PossibleAnswer> possibleAnswerSet) {
-//        this.id = id;
-//        this.questionText = questionText;
-//        this.required = required;
-//        this.customAnswer = customAnswer;
-//        this.possibleAnswerSet = possibleAnswerSet;
-//    }
 
     public long getId() {
         return id;
@@ -100,5 +91,13 @@ public class Question {
 
     public void addPossibleAnswer(PossibleAnswer possibleAnswer){
         possibleAnswerSet.add(possibleAnswer);
+    }
+
+//    public DoneSurvey getDoneSurvey() {
+//        return doneSurvey;
+//    }
+
+    public void setDoneSurvey(DoneSurvey doneSurvey) {
+        this.doneSurvey = doneSurvey;
     }
 }

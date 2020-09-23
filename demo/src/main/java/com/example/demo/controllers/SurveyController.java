@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.Survey;
-import com.example.demo.service.SurveyService1;
+import com.example.demo.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,31 +17,31 @@ import java.util.UUID;
 public class SurveyController {
 
     @Autowired
-    private SurveyService1 surveyService1;
+    private SurveyService surveyService;
 
     @GetMapping
     public ResponseEntity<List<Survey>> getAllSurveys() {
-        return ResponseEntity.ok().body(surveyService1.getAllSurvey());
+        return ResponseEntity.ok().body(surveyService.getAllSurvey());
     }
 
     @GetMapping(path = "{id}")
     public ResponseEntity<Survey> getSurveyById(@PathVariable("id") UUID id) {
-        return ResponseEntity.ok().body(surveyService1.getSurveyById(id));
+        return ResponseEntity.ok().body(surveyService.getSurveyById(id));
     }
 
     @PostMapping
     public ResponseEntity<Survey> createSurvey (@RequestBody Survey survey) {
-        return ResponseEntity.ok().body(surveyService1.createSurvey(survey));
+        return ResponseEntity.ok().body(surveyService.createSurvey(survey));
     }
 
     @PutMapping(path = "{id}")
     public ResponseEntity<Survey> updateSurvey(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Survey survey) {
-        return ResponseEntity.ok().body(surveyService1.updateSurvey(id, survey));
+        return ResponseEntity.ok().body(surveyService.updateSurvey(id, survey));
     }
 
     @DeleteMapping(path = "{id}")
     public HttpStatus deleteSurveyById(@PathVariable("id") UUID id) {
-        surveyService1.deleteSurvey(id);
+        surveyService.deleteSurvey(id);
         return HttpStatus.OK;
     }
 }

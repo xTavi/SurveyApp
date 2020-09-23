@@ -12,7 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.*;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class SurveyAppApplication {
@@ -22,7 +22,9 @@ public class SurveyAppApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(QuestionRepository questionRepository, AnswerRepository answerRepository, SurveyRepository surveyRepository){
+	CommandLineRunner runner(QuestionRepository questionRepository,
+							 AnswerRepository answerRepository,
+							 SurveyRepository surveyRepository){
 		Faker faker = new Faker();
 		return args -> {
 			Survey survey1 = new Survey();
@@ -37,7 +39,6 @@ public class SurveyAppApplication {
 			PossibleAnswer possibleAnswer1 = new PossibleAnswer(1, "Answer1", new HashSet<>());
 			possibleAnswer1.addQuestion(question1);
 			answerRepository.save(possibleAnswer1);
-
 		};
 	}
 }
