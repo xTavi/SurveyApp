@@ -2,10 +2,9 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
-import java.util.List;
 
 
 @Entity(name="QUESTION")
@@ -41,18 +40,6 @@ public class Question {
         this.required = required;
         this.customAnswer = customAnswer;
     }
-
-//    public Question(@JsonProperty("id") long id,
-//                    @JsonProperty("questionText") String questionText,
-//                    @JsonProperty("required") boolean required,
-//                    @JsonProperty("customAnswer") String customAnswer,
-//                    @JsonProperty("possibleAnswerList") Set<PossibleAnswer> possibleAnswerSet) {
-//        this.id = id;
-//        this.questionText = questionText;
-//        this.required = required;
-//        this.customAnswer = customAnswer;
-//        this.possibleAnswerSet = possibleAnswerSet;
-//    }
 
     public long getId() {
         return id;

@@ -17,7 +17,6 @@ public class QuestionServiceImpl implements  QuestionService1 {
     @Autowired
     private QuestionRepository questionRepository;
 
-
     @Override
     public Question createQuestion(Question question) {
         return questionRepository.save(question);
