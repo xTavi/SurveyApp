@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -23,9 +22,6 @@ public class Survey {
     private boolean open;
 
     private String creatorName;
-
-//    public <E> Survey(UUID randomUUID, boolean b, HashSet<E> es) {
-//    }
 
     public void setId(UUID id) {
         this.id = id;
