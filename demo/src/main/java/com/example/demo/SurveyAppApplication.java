@@ -6,13 +6,12 @@ import com.example.demo.model.Survey;
 import com.example.demo.repositories.AnswerRepository;
 import com.example.demo.repositories.QuestionRepository;
 import com.example.demo.repositories.SurveyRepository;
-import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.*;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class SurveyAppApplication {
@@ -23,7 +22,6 @@ public class SurveyAppApplication {
 
 	@Bean
 	CommandLineRunner runner(QuestionRepository questionRepository, AnswerRepository answerRepository, SurveyRepository surveyRepository){
-		Faker faker = new Faker();
 		return args -> {
 			Survey survey1 = new Survey();
 			survey1.setTitle("Cel mai tare chestionar");
