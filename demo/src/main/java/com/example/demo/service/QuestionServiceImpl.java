@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.model.PossibleAnswer;
 import com.example.demo.model.Question;
+import com.example.demo.repositories.AnswerRepository;
 import com.example.demo.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,11 @@ public class QuestionServiceImpl implements  QuestionService1 {
 
     @Override
     public Question createQuestion(Question question) {
+        for(PossibleAnswer possibleAnswer : question.getPossibleAnswerSet()){
+            if(answerRepository.findById(possibleAnswer.getId()).isPresent()) {
+                answerRepository.findById(possibleAnswer.getId()).get().addQuestion(question);
+            }
+        }
         return questionRepository.save(question);
     }
 

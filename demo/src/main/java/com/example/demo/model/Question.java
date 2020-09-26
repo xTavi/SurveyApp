@@ -25,6 +25,10 @@ public class Question {
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
+    @ManyToOne
+    @JoinColumn(name = "done_survey_id")
+    private DoneSurvey doneSurvey;
+
     @ManyToMany(mappedBy = "questionSet")
     private Set<PossibleAnswer> possibleAnswerSet = new HashSet<>();
 
@@ -87,5 +91,13 @@ public class Question {
 
     public void addPossibleAnswer(PossibleAnswer possibleAnswer){
         possibleAnswerSet.add(possibleAnswer);
+    }
+
+//    public DoneSurvey getDoneSurvey() {
+//        return doneSurvey;
+//    }
+
+    public void setDoneSurvey(DoneSurvey doneSurvey) {
+        this.doneSurvey = doneSurvey;
     }
 }

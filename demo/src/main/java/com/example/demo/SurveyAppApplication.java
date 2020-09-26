@@ -22,6 +22,7 @@ public class SurveyAppApplication {
 
 	@Bean
 	CommandLineRunner runner(QuestionRepository questionRepository, AnswerRepository answerRepository, SurveyRepository surveyRepository){
+
 		return args -> {
 			Survey survey1 = new Survey();
 			survey1.setTitle("Cel mai tare chestionar");
@@ -35,7 +36,6 @@ public class SurveyAppApplication {
 			PossibleAnswer possibleAnswer1 = new PossibleAnswer(1, "Answer1", new HashSet<>());
 			possibleAnswer1.addQuestion(question1);
 			answerRepository.save(possibleAnswer1);
-
 		};
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-public interface SurveyService1 {
+public interface SurveyService {
 
         Survey createSurvey(Survey survey);
         Survey updateSurvey(UUID id, Survey survey);

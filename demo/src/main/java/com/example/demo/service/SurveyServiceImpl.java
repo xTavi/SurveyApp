@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.model.Question;
 import com.example.demo.model.Survey;
+import com.example.demo.repositories.QuestionRepository;
 import com.example.demo.repositories.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,21 +12,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @Transactional
-public class SurveyServiceImpl implements SurveyService1 {
+public class SurveyServiceImpl implements SurveyService {
 
     @Autowired
     private SurveyRepository surveyRepository;
 
+    @Autowired
+    QuestionRepository questionRepository;
+
     @Override
     public Survey createSurvey(Survey survey) {
         survey.setCreatorName(getCurrentUserName());
+
+        for(Question q : survey.getQuestionList()){
+           if(questionRepository.findById(q.getId()).isPresent())
+               questionRepository.findById(q.getId()).get().setSurvey(survey);
+        }
         return surveyRepository.save(survey);
     }
 
@@ -57,7 +66,7 @@ public class SurveyServiceImpl implements SurveyService1 {
 
     @Override
     public List<Survey> getAllSurvey() {
-        if (isAdmin())
+        if (isCoordinator())
             return surveyRepository.findByCreatorName(getCurrentUserName());
         else
             return surveyRepository.findAllByOpenIsTrue();
@@ -85,7 +94,7 @@ public class SurveyServiceImpl implements SurveyService1 {
         return username;
     }
 
-    private boolean isAdmin() {
+    private boolean isCoordinator() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_COORDINATOR"));
     }

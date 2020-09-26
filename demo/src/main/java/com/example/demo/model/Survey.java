@@ -1,10 +1,7 @@
 package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 import java.util.UUID;
@@ -40,8 +37,18 @@ public class Survey {
     }
 
     @OneToMany(mappedBy = "survey")
-    private Set<Question> questionList;
+    private Set<Question> questionList =  new HashSet<>();
 
+    public Survey(){
+    }
+
+    public Survey(Survey survey){
+        this.id = survey.getId();
+        this.title = survey.getTitle();
+        this.open = survey.isOpen();
+        this.creatorName = survey.getCreatorName();
+        this.questionList = survey.getQuestionList();
+    }
 
     public Survey(@JsonProperty("id") UUID id,
                   @JsonProperty("title") String title,
@@ -55,9 +62,6 @@ public class Survey {
         this.questionList = questionList;
     }
 
-    public Survey(){
-
-    }
 
     public UUID getId() {
         return id;
