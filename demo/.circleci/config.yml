@@ -1,11 +1,9 @@
-version: 2
+version: 2.1
 
-jobs:
-  build: # name of your job
-    machine:
-      image: windows-default # Windows machine image
-    resource_class: windows.medium
-    steps:
-      # Commands are run in a Windows virtual machine environment
-      - checkout
-      - run: Write-Host 'Hello, Windsows'
+orbs:
+  maven: circleci/maven@0.0.12
+
+workflows:
+  maven_test:
+    jobs:
+      - maven/test # checkout, build, test, and upload test results
