@@ -1,11 +1,11 @@
-version: 2.1
+version: 2
+
 jobs:
-  build:
-    docker:
-      - image: alpine:3.7
+  build: # name of your job
+    machine:
+      image: windows-default # Windows machine image
+    resource_class: windows.medium
     steps:
-      - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+      # Commands are run in a Windows virtual machine environment
+      - checkout
+      - run: Write-Host 'Hello, Windsows'
