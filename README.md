@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://github.com/xTavi/SurveyApp)
+[![CircleCI](https://circleci.com/gh/xTavi/SurveyApp.svg?style=svg)](https://github.com/xTavi/SurveyApp)
+
 
 # SurveyApp
 
