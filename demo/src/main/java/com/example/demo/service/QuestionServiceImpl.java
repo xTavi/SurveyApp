@@ -19,6 +19,9 @@ public class QuestionServiceImpl implements  QuestionService1 {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Autowired
+    private AnswerRepository answerRepository;
+
     @Override
     public Question createQuestion(Question question) {
         for(PossibleAnswer possibleAnswer : question.getPossibleAnswerSet()){
