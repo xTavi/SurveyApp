@@ -1,0 +1,55 @@
+header
+{
+    display: flex;
+    justify-content: space-around;
+}
+ a
+ {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 50px;
+    padding: 0 4rem;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 50px;
+    text-decoration: none;
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid #dcdce4;
+    color: #66b3ff
+    ;
+    margin: 15px;
+
+ }
+ a:hover
+ {
+    background-color: #4da6ff;
+    color:white;
+ }
+ img{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-top: 20px;
+ }
+
+ @font-face {
+    font-family: Hansen_Shadow;
+    src: url(Hansen_Shadow.ttf);
+  }
+
+  h1
+  {
+      font-family: Hansen_Shadow;
+      font-size: 47px;
+      color:#4da6ff;
+  }
+  .main
+  {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+  }
+  
