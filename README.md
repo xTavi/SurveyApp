@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
+
 # SurveyApp
 
 Surveys are a valuable part of any developers toolbox. They are useful for getting
