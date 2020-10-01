@@ -22,13 +22,8 @@ class App extends React.Component {
                 <div>  
                   <nav>
                       <ul>
-                        
-                              <Link to="/" className="login-btn"> Home </Link>
-                          
-
-                        
-                              <Link to="/login" className="login-btn"> Login </Link>
-                          
+                        <Link to="/" className="login-btn"> Home </Link>
+                        <Link to="/login" className="login-btn"> Login </Link>
                       </ul>
                   </nav>
 
@@ -50,7 +45,4 @@ class App extends React.Component {
     }
 }
 
-function Login() {
-    return <h2>Ceva</h2>
-}
 export default App
