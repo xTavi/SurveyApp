@@ -3,7 +3,7 @@ header
     display: flex;
     justify-content: space-around;
 }
- a
+ .login-btn, #getStarted
  {
     box-sizing: border-box;
     display: inline-block;
@@ -22,7 +22,7 @@ header
     margin: 15px;
 
  }
- a:hover
+ .login-btn:hover, #getStarted:hover
  {
     background-color: #4da6ff;
     color:white;
@@ -38,9 +38,11 @@ header
  @font-face {
     font-family: Hansen_Shadow;
     src: url(Hansen_Shadow.ttf);
+    font-family: Rockness;
+    src: url(Rockness.ttf);
   }
 
-  h1
+  #Title
   {
       font-family: Hansen_Shadow;
       font-size: 47px;
@@ -51,5 +53,64 @@ header
      display: flex;
      justify-content: center;
      align-items: center;
+  }
+  
+  .login
+  {
+     background-image: url("https://rapidweaver.marathia.com/stacks/superbnb/demo6_files/SbgI_local_1945.jpg");
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     width: 35%;
+     height:200%;
+     z-index: 2;
+     margin: auto;
+     padding: 20px;
+     
+  }
+  .Input
+  {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid white;
+  outline: none;
+  caret-color: white;
+  
+  
+  }
+  input[type=text]
+  {
+   color: white;
+  }
+  ::placeholder
+  {
+   color:white;
+  }
+  #loginTitle
+  {
+   color:white;
+   font-family: Rockness;
+   font-size: 55px;
+  
+  }
+  #loginButton
+  {
+   color:rgb(165, 165, 223);
+   border-radius: 3%;
+   border-color: transparent;
+  font-size: 19px;
+  padding: 5px;
+  width:180px;
+  color:  #5353f8;
+  font-weight: bold;
+  font-family: 'Courier New', Courier;
+  outline: none;
+  
+  }
+  #forgetPsw
+  {
+   color:white;
+   text-decoration: none;
   }
   

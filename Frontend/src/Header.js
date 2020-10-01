@@ -1,24 +1,18 @@
-import React from "react"
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import loginForm from "./LoginForm"
 
-function Header()
-{
-    return(
-        <div >
-        <header>
-           
-            <h1>SurveyApp</h1>
-            <nav>
-           
-                <a href="">Login</a>
-                <a href="">Sign Up</a>
-            </nav>
-           
-           
-        </header>
-        <hr / >
-        </div>
+function Header() {
 
+  return (
+    <Router>
+      <Link  className="login-btn" to="/loginForm">Login</Link>
+      <Switch>
+        <Route exact path="/loginForm" component={loginForm}></Route>
+      </Switch>
+    </Router>
 
-    )
+  );
 }
+
 export default Header
