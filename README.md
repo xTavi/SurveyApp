@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/xTavi/SurveyApp.svg?style=svg)](https://github.com/xTavi/SurveyApp)
+
+
 # SurveyApp
 
 Surveys are a valuable part of any developers toolbox. They are useful for getting

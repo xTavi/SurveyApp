@@ -1,9 +1,8 @@
 version: 2.1
-
-orbs:
-  maven: circleci/maven@0.0.12
-
-workflows:
-  maven_test:
-    jobs:
-      - maven/test # checkout, build, test, and upload test results
+jobs:
+  build:
+    docker:
+      - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
