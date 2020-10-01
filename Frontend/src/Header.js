@@ -5,12 +5,8 @@ import loginForm from "./LoginForm"
 function Header() {
 
   return (
-    <Router>
-      <Link  className="login-btn" to="/loginForm">Login</Link>
-      <Switch>
-        <Route exact path="/loginForm" component={loginForm}></Route>
-      </Switch>
-    </Router>
+
+      <Link  className="login-btn" to="/login">Login</Link>
 
   );
 }
