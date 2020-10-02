@@ -9,24 +9,12 @@ import {
     Link
   } from "react-router-dom";
 
-// import Footer from "./Footer"
 class App extends React.Component {
-    // constructor() {
-    //     super()
-
-    // }
 
     render() {
         return (
             <Router>
                 <div>  
-                  <nav>
-                      <ul>
-                        <Link to="/" className="login-btn"> Home </Link>
-                        <Link to="/login" className="login-btn"> Login </Link>
-                      </ul>
-                  </nav>
-
                     <Switch>
                         <Route path="/login">
                             <LoginForm/>
@@ -37,6 +25,7 @@ class App extends React.Component {
                             <Main/>
                         </Route>
                     </Switch>
+                   
                 </div>
             </Router>
 

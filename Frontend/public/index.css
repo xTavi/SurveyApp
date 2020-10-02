@@ -1,116 +1,140 @@
 header
 {
-    display: flex;
-    justify-content: space-around;
+   background-image: linear-gradient(to bottom right, #598dbd, wheat)
 }
- .login-btn, #getStarted
+
+.nav-op
+{
+   height: 50px;
+   padding: 0 4rem;
+   color: rgb(87, 82, 82);
+   font-size: 16px;
+   font-weight: normal;
+   line-height: 70px;
+   text-decoration: none;
+   border:none;
+}
+
+.btn
+{
+  right: 0;
+  float:right;
+}
+
+#getStarted
  {
-    box-sizing: border-box;
-    display: inline-block;
-    height: 50px;
-    padding: 0 4rem;
-    text-align: center;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 50px;
-    text-decoration: none;
-    border-radius: 6px;
-    background-color: #fff;
-    border: 1px solid #dcdce4;
-    color: #66b3ff
-    ;
-    margin: 15px;
-
+   box-sizing: border-box;
+   display: inline-block;
+   height: 50px;
+   padding: 0 4rem;
+   text-align: center;
+   font-size: 16px;
+   font-weight: normal;
+   line-height: 50px;
+   text-decoration: none;
+   border-radius: 6px;
+   background-color: #aac0d4;
+   border: 1px solid #dcdce4;
+   color: rgb(87, 82, 82);
+   margin: 15px;
  }
- .login-btn:hover, #getStarted:hover
+
+#getStarted:hover
  {
-    background-color: #4da6ff;
-    color:white;
- }
- img{
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-  margin-top: 20px;
+   background-color: #8ca1b4;
  }
 
- @font-face {
-    font-family: Hansen_Shadow;
-    src: url(Hansen_Shadow.ttf);
-    font-family: Rockness;
-    src: url(Rockness.ttf);
-  }
+img{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 30%;
+   margin-top: 20px;
+ }
 
-  #Title
+ @font-face 
+ {
+   font-family: Hansen_Shadow;
+   src: url(Hansen_Shadow.ttf);
+   font-family: Rockness;
+   src: url(Rockness.ttf);
+}
+
+.main
+{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-left:200px ;
+}
+  
+#Title
   {
-      font-family: Hansen_Shadow;
-      font-size: 47px;
-      color:#4da6ff;
-  }
-  .main
-  {
-     display: flex;
-     justify-content: center;
-     align-items: center;
+   font-size: 67px;
+   font-family: Rockness;
+   text-align: center;
+   color: rgb(117, 117, 117);  
   }
   
-  .login
+.login
   {
-     background-image: url("https://rapidweaver.marathia.com/stacks/superbnb/demo6_files/SbgI_local_1945.jpg");
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     width: 35%;
-     height:200%;
-     z-index: 2;
-     margin: auto;
-     padding: 20px;
-     
+   background-image: linear-gradient(to bottom right, #598dbd, wheat);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 35%;
+   height:500px;
+   z-index: 2;
+   margin: auto;
+   margin-top: 25px;
+   padding: 20px;  
   }
-  .Input
+
+.Input
   {
   background-color: transparent;
   border: none;
-  border-bottom: solid white;
+  border-bottom: solid  rgb(117, 117, 117);;
   outline: none;
-  caret-color: white;
-  
-  
+  caret-color:  rgb(117, 117, 117);;
   }
-  input[type=text]
+
+input[type=text]
   {
-   color: white;
+   color:  rgb(117, 117, 117);;
   }
-  ::placeholder
+
+::placeholder
   {
-   color:white;
+   color: rgb(117, 117, 117);;
   }
-  #loginTitle
+
+#loginTitle
   {
-   color:white;
+   color: rgb(117, 117, 117);;
    font-family: Rockness;
    font-size: 55px;
-  
   }
-  #loginButton
+
+#loginButton
   {
    color:rgb(165, 165, 223);
-   border-radius: 3%;
-   border-color: transparent;
-  font-size: 19px;
-  padding: 5px;
-  width:180px;
-  color:  #5353f8;
-  font-weight: bold;
-  font-family: 'Courier New', Courier;
-  outline: none;
-  
+   border-radius: 4%;
+   border: solid 2px  rgb(117, 117, 117);
+   font-size: 19px;
+   padding: 5px;
+   width:180px;
+   color:   rgb(117, 117, 117);
+   font-weight: bold;
+   font-family: 'Courier New', Courier;
+   outline: none;
+   background-image: linear-gradient(to bottom right, #598dbd, wheat);
   }
-  #forgetPsw
+
+#forgetPsw
   {
-   color:white;
+   color: rgb(117, 117, 117);
    text-decoration: none;
   }
   
