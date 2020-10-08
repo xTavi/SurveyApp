@@ -1,0 +1,6 @@
+com\example\demo\controllers\HomeControllerTest.class
+com\example\demo\SurveyAppApplicationTests.class
+com\example\demo\model\QuestionTest.class
+com\example\demo\model\SurveyTest.class
+com\example\demo\model\PossibleAnswerTest.class
+com\example\demo\service\SurveyServiceImplIT.class
